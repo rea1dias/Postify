@@ -1,15 +1,15 @@
 package com.example.postify.Controller;
 
-import com.example.postify.Service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import com.example.postify.Model.User;
+import com.example.postify.Service.UserService;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/users")
@@ -32,14 +32,28 @@ public class UserController {
                            @RequestParam(required = false) String avatarUrl)
     {
         userService.registerUser(name, email, phoneNumber, password, bio, avatarUrl);
-        return "redirect:/users/login"; // Перенаправление на страницу авторизации
+        return "redirect:/users/login";
     }
 
 
-
     @GetMapping("/login")
-    public String showLoginForm() {
+    public String loginView() {
         return "users/login";
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestParam String email,
+                        @RequestParam String password,
+                        Model model,
+                        HttpSession session) {
+        User user = userService.findByEmail(email);
+        if (user != null && user.getPassword().equals(password)) {
+            session.setAttribute("user", user);
+            return "redirect:/";
+        } else {
+            model.addAttribute("error", "Invalid email or password");
+            return "users/login";
+        }
     }
 
 
