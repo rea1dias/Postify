@@ -1,0 +1,151 @@
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background: #35424a;
+    color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.welcome-message {
+    font-size: 1.5em; 
+    font-weight: bold; 
+    margin-left: 0;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold; 
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffd700;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Увеличенная тень для секции */
+}
+
+section h2 {
+    color: #35424a;
+    text-align: center; /* Центрирование заголовка */
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #35424a;
+    color: #ffffff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Стиль формы регистрации */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px; /* Изменено на 400px для большей ширины формы */
+    margin: 0 auto; 
+    padding: 30px; /* Увеличенные отступы */
+    background: #ffffff;
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
+    align-items: center; 
+}
+
+.form-container h2 {
+    text-align: center; 
+    margin-bottom: 20px; 
+    color: #35424a; /* Цвет заголовка */
+}
+
+.form-container p {
+    text-align: center; 
+    margin-top: 15px; 
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #35424a; /* Цвет меток */
+}
+
+form input, form textarea { /* Добавлено textarea для биографии */
+    padding: 12px; /* Увеличенные отступы для ввода */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    transition: border-color 0.3s; /* Плавный переход цвета границы */
+}
+
+form input:focus, form textarea:focus {
+    border-color: #35424a; /* Цвет границы при фокусе */
+}
+
+form button {
+    padding: 12px;
+    background: #35424a;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s; /* Добавлено преобразование при наведении */
+}
+
+form button:hover {
+    background: #456c82;
+    transform: translateY(-2px); /* Легкий подъем кнопки при наведении */
+}
+
+.form-container a {
+    color: #35424a; 
+    text-decoration: none; 
+    font-weight: bold; 
+    transition: color 0.3s; 
+}
+
+.form-container a:hover {
+    color: #ffd700; 
+}

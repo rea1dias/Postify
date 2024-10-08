@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Network Home</title>
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+<body>
+<header>
+    <div class="welcome-message">Welcome User!</div>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Friends</a></li>
+            <li><a href="#">Messages</a></li>
+            <li><a href="/users/login">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section>
+        <div class="form-container">
+            <h2>Register</h2>
+            <form action="/users/register" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+
+                <label for="bio">Bio:</label>
+                <textarea id="bio" name="bio" rows="4"></textarea>
+
+                <label for="avatarUrl">Avatar URL:</label>
+                <input type="text" id="avatarUrl" name="avatarUrl">
+
+                <button type="submit">Register</button>
+            </form>
+            <p>Already have an account? <a href="/users/login">Login</a></p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Social Network. All rights reserved.</p>
+</footer>
+</body>
+</html>
