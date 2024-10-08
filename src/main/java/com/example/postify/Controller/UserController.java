@@ -56,5 +56,21 @@ public class UserController {
         }
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/users/login";
+    }
+
+    @GetMapping("/confirm")
+    public String confirmEmail(@RequestParam("token") String token) {
+        boolean isConfirmed = userService.confirmUserEmail(token);
+        if (isConfirmed) {
+            return "index";
+        } else {
+            return "users/register";
+        }
+    }
+
 
 }
