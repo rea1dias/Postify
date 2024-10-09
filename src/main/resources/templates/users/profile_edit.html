@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/css/profile_edit.css">
+</head>
+<body>
+<h1>User Profile</h1>
+<div th:if="${successMessage}" class="success-message">
+    <p th:text="${successMessage}"></p>
+</div>
+<form th:action="@{/users/profile/edit}" method="post">
+    <label>Name:</label>
+    <input type="text" name="name" th:value="${user.name}" required><br>
+
+    <label>Email:</label>
+    <input type="email" name="email" th:value="${user.email}" required><br>
+
+    <label>Phone Number:</label>
+    <input type="text" name="phoneNumber" th:value="${user.phoneNumber}" required><br>
+
+    <label>Bio:</label>
+    <textarea name="bio" th:text="${user.bio}"></textarea><br>
+
+    <label>Avatar URL:</label>
+    <input type="text" name="avatarUrl" th:value="${user.avatarUrl}"><br>
+
+    <button type="submit">Update Profile</button>
+
+    <div th:if="${error}">
+        <p th:text="${error}"></p>
+    </div>
+    <div th:if="${success}">
+        <p th:text="${success}"></p>
+    </div>
+
+</form>
+</body>
+</html>

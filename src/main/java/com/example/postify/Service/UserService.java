@@ -10,6 +10,7 @@ import com.example.postify.Model.User;
 
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -59,6 +60,26 @@ public class UserService {
             user.setEmailConfirmed(true);
             userRepository.save(user);
             return true;
+        }
+        return false;
+    }
+
+    public boolean updateUserProfile(Long userId, String name, String email, String phoneNumber, String bio, String avatarUrl) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setName(name);
+            user.setEmail(email);
+            user.setPhoneNumber(phoneNumber);
+            user.setBio(bio);
+            user.setAvatarUrl(avatarUrl);
+            try {
+                userRepository.save(user);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
         }
         return false;
     }
