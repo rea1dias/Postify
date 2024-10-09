@@ -47,11 +47,21 @@ public class UserController {
                         Model model,
                         HttpSession session) {
         User user = userService.findByEmail(email);
-        if (user != null && user.getPassword().equals(password)) {
-            session.setAttribute("user", user);
-            return "redirect:/";
+
+        if (user != null) {
+            if (user.getPassword().equals(password)) {
+                if (!user.isEmailConfirmed()) {
+                    model.addAttribute("error", "Please confirm your email before logging in.");
+                    return "users/login";
+                }
+                session.setAttribute("user", user);
+                return "redirect:/";
+            } else {
+                model.addAttribute("error", "Invalid email or password.");
+                return "users/login";
+            }
         } else {
-            model.addAttribute("error", "Invalid email or password");
+            model.addAttribute("error", "Invalid email or password.");
             return "users/login";
         }
     }
