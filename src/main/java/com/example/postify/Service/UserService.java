@@ -5,10 +5,6 @@ import com.example.postify.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.postify.Model.User;
-
-
-
-
 import java.io.IOException;
 import java.util.Optional;
 import java.util.UUID;

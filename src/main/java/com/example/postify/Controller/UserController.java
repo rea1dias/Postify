@@ -66,12 +66,6 @@ public class UserController {
         }
     }
 
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/users/login";
-    }
-
     @GetMapping("/confirm")
     public String confirmEmail(@RequestParam("token") String token, Model model) {
         boolean isConfirmed = userService.confirmUserEmail(token);
@@ -131,6 +125,12 @@ public class UserController {
             model.addAttribute("error", "You need to log in to update your profile.");
         }
         return "users/profile";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
     }
 
 
