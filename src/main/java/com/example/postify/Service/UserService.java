@@ -22,7 +22,7 @@ public class UserService {
     private SendGridEmailService emailService;
 
     private String generateConfirmationToken() {
-        return UUID.randomUUID().toString(); // Генерация уникального токена
+        return UUID.randomUUID().toString();
     }
 
     public void registerUser(String name, String email, String phoneNumber, String password, String bio, String avatarUrl) {
@@ -34,14 +34,13 @@ public class UserService {
         user.setBio(bio);
         user.setAvatarUrl(avatarUrl);
 
-        userRepository.save(user);
-
         String token = generateConfirmationToken();
         user.setConfirmationToken(token);
+        user.setEmailConfirmed(false);
 
         userRepository.save(user);
 
-        String confirmationLink = "http://localhost:8080/confirm?token=" + token;
+        String confirmationLink = "http://localhost:8080/users/confirm?token=" + token;
 
         try {
             emailService.sendConfirmationEmail(user.getEmail(), confirmationLink);

@@ -63,12 +63,12 @@ public class UserController {
     }
 
     @GetMapping("/confirm")
-    public String confirmEmail(@RequestParam("token") String token) {
+    public String confirmEmail(@RequestParam("token") String token, Model model) {
         boolean isConfirmed = userService.confirmUserEmail(token);
         if (isConfirmed) {
-            return "index";
+            return "users/emailConfirm/confirm_success";
         } else {
-            return "users/register";
+            return "users/emailConfirm/confirm_error";
         }
     }
 

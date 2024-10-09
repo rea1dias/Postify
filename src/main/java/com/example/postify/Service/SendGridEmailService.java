@@ -17,14 +17,17 @@ import java.io.IOException;
 @Service
 public class SendGridEmailService {
 
+
+
     @Value("${sendgrid.api.key}")
     private String apiKey;
 
     public void sendConfirmationEmail(String to, String confirmationLink) throws IOException {
+
         Email from = new Email("rahmanovdias13@gmail.com");
-        String subject = "Подтверждение регистрации";
+        String subject = "Confirmation of registration";
         Email toEmail = new Email(to);
-        Content content = new Content("text/plain", "Пожалуйста, подтвердите свою регистрацию, перейдя по следующей ссылке: " + confirmationLink);
+        Content content = new Content("text/plain", "Please confirm your registration by clicking on the following link:" + confirmationLink);
         Mail mail = new Mail(from, subject, toEmail, content);
 
         SendGrid sg = new SendGrid(apiKey);
