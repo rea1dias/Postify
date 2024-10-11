@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Friends</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<header>
+  <h1>Search Friends</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/friends">Friends</a>
+    <a href="/users/profile">Profile</a>
+    <a href="/logout">Logout</a>
+  </nav>
+</header>
+
+<main>
+  <h2>Find a Friend</h2>
+  <form action="/friends/search-results" method="get">
+    <input type="text" name="searchTerm" placeholder="Search by name or email" required>
+    <button type="submit">Search</button>
+  </form>
+</main>
+</body>
+</html>

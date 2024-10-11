@@ -3,6 +3,9 @@ package com.example.postify.Model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -23,10 +26,19 @@ public class User {
 
     private String confirmationToken;
 
+    @ManyToMany
+    @JoinTable(
+            name = "friendships",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "friend_id")
+    )
+    private Set<User> friends = new HashSet<>();
+
 
     public User() {}
 
-    public User(String name, String email, String password, String bio, String avatarUrl, String phoneNumber, boolean emailConfirmed, String confirmationToken) {
+    public User(Long id, String name, String email, String password, String bio, String avatarUrl, String phoneNumber, boolean emailConfirmed, String confirmationToken) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;

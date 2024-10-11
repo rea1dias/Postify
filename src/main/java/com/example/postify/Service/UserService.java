@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.postify.Model.User;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -78,6 +79,15 @@ public class UserService {
             }
         }
         return false;
+    }
+
+    public List<User> searchUsers(String query, Long currentUserId) {
+        return userRepository.findByNameContainingIgnoreCaseOrEmailContainingIgnoreCase(query, query, currentUserId);
+    }
+
+
+    public List<User> searchByNameOrEmail(String searchTerm) {
+        return userRepository.findByNameContainingIgnoreCaseOrEmailContainingIgnoreCase(searchTerm, searchTerm);
     }
 
 

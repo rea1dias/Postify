@@ -1,6 +1,4 @@
 package com.example.postify.Service;
-
-import com.example.postify.Model.User;
 import com.sendgrid.Method;
 import com.sendgrid.Request;
 import com.sendgrid.Response;
@@ -10,14 +8,11 @@ import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import com.sendgrid.*;
 
 import java.io.IOException;
 
 @Service
 public class SendGridEmailService {
-
-
 
     @Value("${sendgrid.api.key}")
     private String apiKey;

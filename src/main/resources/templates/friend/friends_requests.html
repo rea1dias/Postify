@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friend Requests</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<header>
+  <h1>Friend Requests</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/friends/search">Search</a>
+    <a href="/profile">View Profile</a>
+    <a href="/friends/list">Friend requests</a>
+    <a href="/logout">Logout</a>
+  </nav>
+</header>
+
+<main>
+  <h2>Pending Friend Requests</h2>
+  <ul>
+    <li th:each="request : ${friendRequests}">
+      <span th:text="${request.sender.name}"></span>
+
+      <form action="@{/friends/accept-request/{id}(id=${request.id})}" method="post" style="display:inline;">
+        <input type="hidden" name="id" th:value="${request.id}"/>
+        <button type="submit">Accept</button>
+      </form>
+
+      <form action="@{/friends/decline-request/{id}(id=${request.id})}" method="post" style="display:inline;">
+        <input type="hidden" name="id" th:value="${request.id}"/>
+        <button type="submit">Decline</button>
+      </form>
+    </li>
+  </ul>
+
+  <div th:if="${#lists.isEmpty(pendingRequests)}">
+    <p>No pending friendship requests.</p>
+  </div>
+
+</main>
+</body>
+</html>

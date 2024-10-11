@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<header>
+  <h1>Search Results</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/friends">Friends</a>
+    <a href="/users/profile">Profile</a>
+    <a href="/logout">Logout</a>
+  </nav>
+</header>
+
+<main>
+  <h2>Search Results</h2>
+  <div>
+    <h3>Found Users:</h3>
+    <ul>
+      <!-- Перебираем найденных пользователей и выводим их на экран -->
+      <th:block th:each="user : ${foundUsers}">
+        <li>
+          <span th:text="${user.name}">User Name</span>
+          <span th:text="${user.email}">User Email</span>
+
+          <form action="/friends/send-request" method="post" style="display:inline;">
+            <input type="hidden" name="friendEmail" th:value="${user.email}"/>
+            <button type="submit">Send Friend Request</button>
+          </form>
+        </li>
+      </th:block>
+    </ul>
+
+    <!-- Если не найдено пользователей -->
+    <div th:if="${#lists.isEmpty(foundUsers)}">
+      <p>No users found.</p>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>
